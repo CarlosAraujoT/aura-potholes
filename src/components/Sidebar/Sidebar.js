@@ -18,6 +18,7 @@ export const Sidebar = ({ data }) => {
 		<div style={styles.sidebar}>
 			<div style={styles.titleContainer}>
 				<img
+					alt=''
 					// className='img-thumbnail'
 					style={styles.logo}
 					width='100'
@@ -28,7 +29,7 @@ export const Sidebar = ({ data }) => {
 
 			<div style={styles.grid}>
 				{data.map(el => {
-					const date = el.date.toLocaleDateString("es-MX", options);
+					const date = new Date(el.date).toLocaleDateString("es-MX", options);
 
 					return (
 						<div
@@ -40,6 +41,7 @@ export const Sidebar = ({ data }) => {
 							style={styles.item}
 						>
 							<img
+								alt=''
 								style={styles.img}
 								src={require(`../../assets/${el.id}.png`).default}
 								width='50'

@@ -14,13 +14,17 @@ const MarkerCustom = ({ data }) => {
 			setIdItem(data.id);
 		}
 	};
-
+	
+	const AnyReactComponent = ({ text }) => <div style={{width: '100px', height: '100px', backgroundColor: 'black'}} >{text}</div>;
 	return (
 		<Marker
 			position={{ lat: data.lat, lng: data.lng }}
+			// defaultIcon={require(`../../assets/${data.id}.png`).default}
 			defaultIcon={dot}
 			onClick={setShow}
 		>
+			<AnyReactComponent text='Hola' />
+
 			<InfoBox
 				visible={itemState.id === data.id}
 				options={{

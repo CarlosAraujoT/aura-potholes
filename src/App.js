@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Map from "./components/Map";
 import Sidebar from "./components/Sidebar";
-import { points } from "./db/data";
+import { potholes } from "./db/data.json";
 import logo from "./assets/logo 320x320.png";
 
 export const App = () => {
@@ -14,13 +14,13 @@ export const App = () => {
 	return (
 		<div style={styles.container}>
 			<div style={styles.sidebar}>
-				<Sidebar data={points} />
+				<Sidebar data={potholes} />
 			</div>
 			<div style={styles.map}>
 				<Map
 					idToShow={pointSelected}
 					setIdToShow={onHandlershow}
-					points={points}
+					points={potholes}
 					isMarkerShown
 					googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyA9ftZoerJ-yDmmfpHFyspbB_rfmEtcwrc&v=3.exp&libraries=geometry,drawing,places'
 					loadingElement={<div style={{ height: `100%` }} />}
