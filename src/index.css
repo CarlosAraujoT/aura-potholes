@@ -55,10 +55,28 @@ code {
 }
 /* Optional: show position indicator in red */
 
-/* .sidebar-item {
-
-} */
+.menu-item:hover {
+	border-left: 3px solid white;
+	background-color: rgba(0, 0, 0, .1);
+}
 
 .sidebar-item:hover {
 	opacity: 0.8;
+}
+
+.MuiTimelineItem-missingOppositeContent::before {
+	content: none !important;
+}
+
+.infobox-image {
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.infobox-image > span {
+	text-align: center;
+	margin-top: 10px;
 }
