@@ -1,24 +1,23 @@
 import { useCallback } from 'react'
 import { CircularProgress } from '@material-ui/core'
 import { GoogleMap, useLoadScript } from '@react-google-maps/api'
-import MarkerClusterer from '@googlemaps/markerclustererplus'
 import { grey } from '../helpers/mapStyles'
 
-const infoWindow = new window.google.maps.InfoWindow()
 
 export function MapTest({ data }) {
 	const { isLoaded, loadError } = useLoadScript({
 		googleMapsApiKey: 'AIzaSyA9ftZoerJ-yDmmfpHFyspbB_rfmEtcwrc',
 		styles: grey
 	})
-
+	
 	const RenderMap = () => {
 		const onLoad = useCallback(function onLoad(mapInstance) {
-
+			
 			const markers = []
-
+			
 			if(data.length) {
-
+				
+				const infoWindow = new window.google.maps.InfoWindow()
 
 				data.forEach(e => {
 					const marker = new window.google.maps.Marker({
@@ -46,7 +45,7 @@ export function MapTest({ data }) {
 
 		return (
 			<GoogleMap
-				mapContainerStyle={{ height: '100%', minHeight: '1000px' }}
+				mapContainerStyle={{ height: '100%', borderRadius: '10px' }}
 				onLoad={onLoad}
 				center={{ lat: 25.683365882142517, lng: -100.35678285004195 }}
 				zoom={16}

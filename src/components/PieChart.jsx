@@ -1,28 +1,22 @@
-import { VictoryPie } from 'victory'
+import { VictoryPie, VictoryTooltip } from 'victory'
 import { makeStyles, Typography } from '@material-ui/core'
 import classnames from 'classnames'
 
 const useStyles = makeStyles((theme) => ({
 	lastSession: {
-		padding: theme.spacing(1),
-		marginTop: theme.spacing(2),
-		maxHeight: 500,
-		overflowX: 'hidden',
-		scrollbarColor: 'rgba(0, 0, 0, .1) white',
-		scrollbarWidth: 'thin',
+		height: '100%',
 	},
 	labels: {
 		display: 'flex',
-		padding: '0px 40px',
 		justifyContent: 'space-evenly',
+		marginTop: '-30px'
 	},
 	squareCant: {
-		height: 25,
-		width: 35,
-		marginBottom: 10,
+		marginBottom: 5,
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		padding: 5
 	},
 	chartColorYellow: {
 		backgroundColor: '#F29900',
@@ -35,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
 		flexDirection: 'column',
 		alignItems: 'center',
 	},
-  chart: {
-    height: 350
-  },
 	cant: {
 		color: 'white',
-		textAlign: 'center'
+		textAlign: 'center',
+	},
+	chart: {
+		height: 250
 	}
 }))
 
@@ -53,23 +47,25 @@ const PieChart = ({ data }) => {
 				<VictoryPie
 					data={[
 						{
-							x: data.filter(el => el.type === 2).length, 
-							y: data.filter(el => el.type === 2).length
-						}, 
+							x: data.filter((el) => el.type === 2).length,
+							y: data.filter((el) => el.type === 2).length,
+						},
 						{
-							x: data.filter(el => el.type === 1).length, 
-							y: data.filter(el => el.type === 1).length							
-						}]}
+							x: data.filter((el) => el.type === 1).length,
+							y: data.filter((el) => el.type === 1).length,
+						},
+					]}
 					colorScale={['#EA4335', '#F29900']}
 					innerRadius={100}
 					padding={{ top: 20, bottom: 60 }}
+					labelComponent={<VictoryTooltip />}
 				/>
 			</div>
-				<div className={styles.labels}>
+			<div className={styles.labels}>
 					<div className={styles.label}>
 						<div className={classnames(styles.chartColorYellow, styles.squareCant)}>
 							<Typography className={styles.cant} variant='subtitle2'>
-								{ (100 / data.length) * data.filter(el => el.type === 1).length  }
+								{ ((100 / data.length) * data.filter(el => el.type === 1).length).toFixed(1)  }%
 							</Typography>
 						</div>
 						<Typography variant='subtitle2'>Grietas</Typography>
@@ -77,7 +73,7 @@ const PieChart = ({ data }) => {
 					<div className={styles.label}>
 						<div className={classnames(styles.chartColorRed, styles.squareCant)}>
 							<Typography className={styles.cant} variant='subtitle2'>
-								{ (100 / data.length) * data.filter(el => el.type === 2).length  }
+								{ ((100 / data.length) * data.filter(el => el.type === 2).length).toFixed(1)  }%
 							</Typography>
 						</div>
 						<Typography variant='subtitle2'>Baches</Typography>
